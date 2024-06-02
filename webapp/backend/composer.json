@@ -1,0 +1,20 @@
+{
+    "name": "sona/backend",
+    "description": "Sona Test App",
+    "type": "project",
+    "require": {
+        "guzzlehttp/guzzle": "8.0.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sona\\Backend\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonathan Ursua",
+            "email": "jonathan.m.ursua@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

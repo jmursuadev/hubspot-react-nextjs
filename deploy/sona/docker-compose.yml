@@ -1,0 +1,38 @@
+services:
+  backend_php:
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    container_name: backend_php
+    build:
+      context: ../../webapp/backend
+      dockerfile: Dockerfile
+    image: backend_php
+    restart: unless-stopped
+    working_dir: /var/www/backend
+    tty: true
+    volumes:
+      - ../../webapp/backend:/var/www/backend
+    networks:
+      - app-network
+
+  sona_nginx:
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    container_name: sona_nginx
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ../../webapp/backend:/var/www/backend
+      - ../../webapp/backend/.local:/var/www/backend/.local
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - backend_php
+    links:
+      - backend_php
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
