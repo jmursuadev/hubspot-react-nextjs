@@ -49,13 +49,11 @@ class AuthController
             $data = json_decode($body, true);
             
             if (isset($data['access_token']) && isset($data['refresh_token'])) {
-                // $_SESSION['access_token'] = $data['access_token'];
                 $_SESSION['refresh_token'] = $data['refresh_token'];
 
                 // save access token as http only cookie
                 setcookie('access_token', $data['access_token'], time() + 3600, '/', 'localhost', false, true);
                 setcookie('refresh_token', $data['refresh_token'], time() + 3600, '/', 'localhost', false, true);
-                // print_r($_COOKIE['access_token']);
                 header('Location: ' . Config::$frontendUrl);
                 exit;
             } else {
@@ -83,7 +81,6 @@ class AuthController
             $data = json_decode($body, true);
 
             if (isset($data['access_token'])) {
-                // $_SESSION['access_token'] = $data['access_token'];
                 // save access token as http only cookie
                 setcookie('access_token', $data['access_token'], time() + 3600, '/', 'localhost', false, true);
                 setcookie('refresh_token', $data['refresh_token'], time() + 3600, '/', 'localhost', false, true);
