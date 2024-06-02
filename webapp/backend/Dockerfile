@@ -17,7 +17,12 @@ WORKDIR /var/www/backend
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-# Install composer dependencies
-RUN composer install --no-dev --verbose
+RUN cd /var/www/backend
 
-CMD php-fpm -F -R
+# Install composer dependencies
+RUN chmod -R 755 /var/www/backend
+RUN chown -R www-data:www-data /var/www/backend
+RUN composer validate
+RUN composer update
+
+CMD bash -c "composer install --no-interaction && php-fpm -F -R"
