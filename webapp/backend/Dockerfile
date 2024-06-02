@@ -21,8 +21,3 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --verbose
 
 CMD php-fpm -F -R
-
-# COPY init.sh /opt
-# RUN chmod +x /opt/init.sh
-
-# CMD ["/opt/init.sh"]
