@@ -18,7 +18,6 @@ Sona coding test application
 * Go to PATH indicated above
 
 * Run command `npm install`
-
-* Make sure to create .env file in directory PATH
+* Create .env file copy the .env.example in directory PATH
 
 * Run command `npm run dev`
