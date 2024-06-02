@@ -10,6 +10,7 @@ Sona coding test application
 * Run command `docker-compose up -d`
 
 ### Front End
+Make sure you have Node.js installed. The minimum required version is `18.*`
 
 * PATH: `webapp/frontend`
 * Go to PATH indicated above
