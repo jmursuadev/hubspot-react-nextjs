@@ -24,7 +24,7 @@ export type ContactsResponse = {
 export type ContactsParams = {
 	page: number;
 	filter: {
-		from?: null | Date;
-		to?: null | Date;
+		from?: string | Date;
+		to?: string | Date;
 	};
 };

@@ -9,6 +9,7 @@ import {
 	PaginationPrevious,
 } from "./ui/pagination";
 import { cn } from "@/lib/utils";
+import { max } from "date-fns";
 
 type CustomPaginationProps = {
 	currentPage: number;
@@ -40,8 +41,12 @@ export default function CustomPagination({
 	const generatePaginationNumber = (): number[] => {
 		const { currentPage, paginationLimit } = props;
 
+		if(!totalPages) {
+			return [];
+		}
+
 		let minLeft = Math.max(currentPage - 1, 2);
-		let maxLeft = Math.max(Math.min(currentPage + 1, totalPages), 3);
+		let maxLeft = Math.max(Math.min(currentPage + 1, totalPages), totalPages >= paginationLimit ? 3 : 0);
 		let right = Math.max(
 			Math.min(totalPages - 2, Math.max(totalPages, maxLeft + 1)),
 			maxLeft + 1
@@ -63,7 +68,18 @@ export default function CustomPagination({
 		// create array from minLeft to maxLeft
 		const leftRange = Array.from({ length: maxLeft - minLeft + 1 }, (_, i) => i + minLeft);
 		const rightRange = Array.from({ length: totalPages - right + 1 }, (_, i) => i + right);
-
+		console.log({
+			leftRange,
+			rightRange,
+			minLeft,
+			maxLeft,
+			right,
+			leftCount,
+			rightCount,
+			remainingPaginationCount,
+			currentPage,
+			totalPages
+		});
 		return [1].concat(leftRange, rightRange);
 	};
 

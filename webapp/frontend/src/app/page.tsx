@@ -38,10 +38,12 @@ export default function Home() {
 		setDate(range);
 	};
 
-	const handleApply = () => {};
+	const handleApply = () => {
+		refetch();
+	};
 
-	const { data, error, isLoading } = useQuery({
-		queryKey: ["contacts", { page, date }],
+	const { data, error, isLoading, refetch } = useQuery({
+		queryKey: ["contacts", { page }],
 		queryFn: () =>
 			getContacts({
 				page,
@@ -56,6 +58,8 @@ export default function Home() {
 			meta: {
 				current_page: 1,
 				last_page: 1,
+				next_page: 1,
+				prev_page: 1,
 			},
 		},
 	});
