@@ -41,12 +41,15 @@ export default function CustomPagination({
 	const generatePaginationNumber = (): number[] => {
 		const { currentPage, paginationLimit } = props;
 
-		if(!totalPages) {
+		if (!totalPages) {
 			return [];
 		}
 
 		let minLeft = Math.max(currentPage - 1, 2);
-		let maxLeft = Math.max(Math.min(currentPage + 1, totalPages), totalPages >= paginationLimit ? 3 : 0);
+		let maxLeft = Math.max(
+			Math.min(currentPage + 1, totalPages),
+			totalPages >= paginationLimit ? 3 : 0
+		);
 		let right = Math.max(
 			Math.min(totalPages - 2, Math.max(totalPages, maxLeft + 1)),
 			maxLeft + 1
@@ -78,7 +81,7 @@ export default function CustomPagination({
 			rightCount,
 			remainingPaginationCount,
 			currentPage,
-			totalPages
+			totalPages,
 		});
 		return [1].concat(leftRange, rightRange);
 	};
@@ -135,7 +138,7 @@ export default function CustomPagination({
 				<PaginationItem className="flex-grow" key={`prev`}>
 					<PaginationPrevious
 						href="#"
-						onClick={() => onPageChange(1)}
+						onClick={() => onPageChange(props.currentPage - 1 || 1)}
 						tabIndex={isPrevPageAvailable ? 0 : -1}
 						aria-disabled={!isPrevPageAvailable}
 						className={cn({

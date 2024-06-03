@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { getContacts } from "@/repositories/contactRepository";
 import { set } from "date-fns";
+import { DateRange } from "react-day-picker";
 
 const generateData = () => {
 	return Array.from({ length: 5 }, (_, i) => ({
@@ -30,7 +31,7 @@ const generateData = () => {
 };
 
 export default function Home() {
-	const [date, setDate] = React.useState<{ from?: string; to?: string } | undefined>(undefined);
+	const [date, setDate] = React.useState<DateRange>({ from: undefined, to: undefined });
 	const [year, setYear] = React.useState(new Date().getFullYear());
 	const [page, setPage] = React.useState(1);
 
