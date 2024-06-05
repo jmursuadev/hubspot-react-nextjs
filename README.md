@@ -1,5 +1,5 @@
-# sona-test-app
-Sona coding test application
+# Hubspot Integration with React/Next JS
+Contact Hubspot Integration with React Front End using Next JS Framework
 
 ## Installation
 
