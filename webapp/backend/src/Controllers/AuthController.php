@@ -1,9 +1,9 @@
 <?php
 
-namespace Sona\Backend\Controllers;
+namespace App\Backend\Controllers;
 
 use GuzzleHttp\Client;
-use Sona\Backend\Config\Config;
+use App\Backend\Config\Config;
 
 class AuthController
 {

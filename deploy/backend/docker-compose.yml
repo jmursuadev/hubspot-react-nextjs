@@ -14,9 +14,9 @@ services:
     networks:
       - app-network
 
-  sona_nginx:
+  app_nginx:
     platform: linux/amd64 #for platform error on Apple M1 chips
-    container_name: sona_nginx
+    container_name: app_nginx
     image: nginx:latest
     restart: unless-stopped
     ports:

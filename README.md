@@ -6,7 +6,7 @@ Contact Hubspot API Integration with Vanilla PHP & React Front End using Next JS
 ### Backend
 
 * Install Docker
-* Go to `deploy/sona`
+* Go to `deploy/backend`
 * Run command `docker-compose up -d`
 
 ### Front End

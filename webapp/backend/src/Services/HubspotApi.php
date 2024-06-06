@@ -1,9 +1,8 @@
 <?php
 
-namespace Sona\Backend\Services;
+namespace App\Backend\Services;
 
 use GuzzleHttp\Exception\ClientException;
-use Sona\Backend\Config\Config;
 
 class HubspotApi extends Api {
 

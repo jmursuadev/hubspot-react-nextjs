@@ -2,9 +2,9 @@
 
 require '../vendor/autoload.php';
 
-use Sona\Backend\Controllers\AuthController;
-use Sona\Backend\Controllers\ContactController;
-use Sona\Backend\Gateway\Router;
+use App\Backend\Controllers\AuthController;
+use App\Backend\Controllers\ContactController;
+use App\Backend\Gateway\Router;
 
 session_start();
 header("Access-Control-Allow-Origin: *");

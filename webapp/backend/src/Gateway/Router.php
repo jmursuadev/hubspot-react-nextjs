@@ -1,6 +1,6 @@
 <?php
 
-namespace Sona\Backend\Gateway;
+namespace App\Backend\Gateway;
 
 class Router {
     private $requestUri;

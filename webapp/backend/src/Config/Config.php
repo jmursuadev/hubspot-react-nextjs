@@ -1,6 +1,6 @@
 <?php
 
-namespace Sona\Backend\Config;
+namespace App\Backend\Config;
 
 class Config
 {

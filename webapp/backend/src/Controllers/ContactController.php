@@ -1,9 +1,9 @@
 <?php
 
-namespace Sona\Backend\Controllers;
+namespace App\Backend\Controllers;
 
-use Sona\Backend\Resources\ContactResource;
-use Sona\Backend\Services\HubspotApi;
+use App\Backend\Resources\ContactResource;
+use App\Backend\Services\HubspotApi;
 
 class ContactController {
 

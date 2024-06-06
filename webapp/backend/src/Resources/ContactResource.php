@@ -1,6 +1,6 @@
 <?php
 
-namespace Sona\Backend\Resources;
+namespace App\Backend\Resources;
 
 class ContactResource {
     public static $perPage = 10;

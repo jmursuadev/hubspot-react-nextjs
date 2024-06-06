@@ -1,13 +1,13 @@
 {
-    "name": "sona/backend",
-    "description": "Sona Test App",
+    "name": "app/backend",
+    "description": "Contact Hubspot API Integration with Vanilla PHP & React Front End using Next JS Framework",
     "type": "project",
     "require": {
         "guzzlehttp/guzzle": "8.0.x-dev"
     },
     "autoload": {
         "psr-4": {
-            "Sona\\Backend\\": "src/"
+            "App\\Backend\\": "src/"
         }
     },
     "authors": [

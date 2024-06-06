@@ -1,11 +1,11 @@
 <?php
 
 // create base class for api
-namespace Sona\Backend\Services;
+namespace App\Backend\Services;
 
 use GuzzleHttp\Client;
-use Sona\Backend\Config\Config;
-use Sona\Backend\Controllers\AuthController;
+use App\Backend\Config\Config;
+use App\Backend\Controllers\AuthController;
 
 class Api {
     protected $client;
