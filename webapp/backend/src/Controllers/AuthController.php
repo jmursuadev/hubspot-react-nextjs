@@ -3,7 +3,6 @@
 namespace App\Backend\Controllers;
 
 use GuzzleHttp\Client;
-use App\Backend\Config\Config;
 
 class AuthController
 {
@@ -20,9 +19,9 @@ class AuthController
     public function redirectToHubSpot()
     {
         $authorizationUrl = 'https://app.hubspot.com/oauth/authorize?' . http_build_query([
-            'client_id' => Config::$clientId,
-            'redirect_uri' => Config::$redirectUri,
-            'scope' => Config::$scope
+            'client_id' => $_ENV['CLIENT_ID'],
+            'redirect_uri' => $_ENV['REDIRECT_URI'],
+            'scope' => $_ENV['SCOPE']
         ]);
 
         header('Location: ' . $authorizationUrl);
@@ -38,9 +37,9 @@ class AuthController
             $response = $client->post('https://api.hubapi.com/oauth/v1/token', [
                 'form_params' => [
                     'grant_type' => 'authorization_code',
-                    'client_id' => Config::$clientId,
-                    'client_secret' => Config::$clientSecret,
-                    'redirect_uri' => Config::$redirectUri,
+                    'client_id' => $_ENV['CLIENT_ID'],
+                    'client_secret' => $_ENV['CLIENT_SECRET'],
+                    'redirect_uri' => $_ENV['REDIRECT_URI'],
                     'code' => $code
                 ]
             ]);
@@ -49,12 +48,10 @@ class AuthController
             $data = json_decode($body, true);
             
             if (isset($data['access_token']) && isset($data['refresh_token'])) {
-                $_SESSION['refresh_token'] = $data['refresh_token'];
-
                 // save access token as http only cookie
                 setcookie('access_token', $data['access_token'], time() + 3600, '/', 'localhost', false, true);
                 setcookie('refresh_token', $data['refresh_token'], time() + 3600, '/', 'localhost', false, true);
-                header('Location: ' . Config::$frontendUrl);
+                header('Location: ' . $_ENV['FRONTEND_URL']);
                 exit;
             } else {
                 echo "Error retrieving access token.";
@@ -71,8 +68,8 @@ class AuthController
             $response = $client->post('https://api.hubapi.com/oauth/v1/token', [
                 'form_params' => [
                     'grant_type' => 'refresh_token',
-                    'client_id' => Config::$clientId,
-                    'client_secret' => Config::$clientSecret,
+                    'client_id' => $_ENV['CLIENT_ID'],
+                    'client_secret' => $_ENV['CLIENT_SECRET'],
                     'refresh_token' => $this->getRefreshToken()
                 ]
             ]);
@@ -85,7 +82,7 @@ class AuthController
                 setcookie('access_token', $data['access_token'], time() + 3600, '/', 'localhost', false, true);
                 setcookie('refresh_token', $data['refresh_token'], time() + 3600, '/', 'localhost', false, true);
                 if (isset($data['refresh_token'])) {
-                    $_SESSION['refresh_token'] = $data['refresh_token'];
+                    $_COOKIE['refresh_token'] = $data['refresh_token'];
                 }
                 return true;
             } else {

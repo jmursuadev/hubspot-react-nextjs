@@ -1,10 +1,15 @@
 <?php
 
+// define('APP_INIT', true);
+
 require '../vendor/autoload.php';
 
 use App\Backend\Controllers\AuthController;
 use App\Backend\Controllers\ContactController;
 use App\Backend\Gateway\Router;
+use Symfony\Component\Dotenv\Dotenv;
+
+(new Dotenv())->load(__DIR__ . '/../.env');
 
 session_start();
 header("Access-Control-Allow-Origin: *");
